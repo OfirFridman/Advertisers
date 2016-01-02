@@ -1,0 +1,39 @@
+/**
+  Navbar
+**/
+
+.navbar-default {
+  background-color: $secondary-color;
+  border-radius: 0;
+
+  ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-nav > li > a {
+    @include single-transition;
+
+    color: $green-color;
+
+    &:hover {
+      color: $white-color;
+      background-color: $green-color;
+    }
+
+    &:focus {
+      color: $white-color;
+    }
+  }
+
+  .icon-logo {
+    position: relative;
+    background-image: url(../images/logo.png);
+    background-size: 60px 40px;
+    background-repeat: no-repeat;
+    width: 152px;
+    height: 169px;
+    bottom: 8px;
+  }
+}
+

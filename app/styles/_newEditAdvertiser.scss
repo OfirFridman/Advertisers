@@ -1,0 +1,105 @@
+/*
+  New Edit Advertiser
+*/
+
+$field-width: 36%;
+
+.new-advertiser-container {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+
+  .advertiser-form-label {
+    width: 100px;
+    color: $dark-gray-color;
+  }
+
+  .normal-label::before {
+    content: "*";
+    opacity: 0;
+    margin-right: 5px;
+  }
+
+  .mandatory-label::before {
+    content: "*";
+    color: $red-color;
+    margin-right: 5px;
+  }
+
+  .description-label {
+    float: left;
+  }
+
+  .validationError {
+    position: relative;
+    font-size: 1em;
+    color: $error-color;
+    position: relative;
+    margin-left: 5px;
+    top: 2px;
+  }
+
+  .button-strip {
+    position: fixed;
+    bottom: 0;
+    background: $main-color;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+  }
+
+  .save-button {
+    float: right;
+    background-color: $third-color;
+    color: $secondary-color;
+    border-radius: 0;
+  }
+
+  .save-button[disabled] {
+    background-color: $third-color;
+    opacity: 0.5;
+
+    @include custom-tooltip($background-color: $red-color, $border-left-color: $red-color);
+  }
+
+  .advertiser-input-width {
+    @include text-truncate;
+    @include custom-tooltip($border-right-color: $orange-color);
+
+    width: $field-width;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .advertiser-input-width.ng-invalid {
+    border: 1px solid $error-color;
+  }
+
+  .ace_editor {
+    display: inline-block;
+    width: $field-width;
+    height: 200px;
+  }
+
+  .advertiser-row {
+    margin: 5px 0;
+    display: flex;
+  }
+
+  .parsed-markdown {
+    width: 93% - $field-width;
+    margin-left: 20px;
+    overflow: auto;
+    height: 203px;
+    border: 1px solid $green-color;
+  }
+
+  #description-markdown-editor-hidden-input{
+    display: none;
+  }
+}

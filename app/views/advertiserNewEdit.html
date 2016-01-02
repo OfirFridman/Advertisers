@@ -1,0 +1,97 @@
+<div class="new-advertiser-container">
+
+  <!--Spinner-->
+  <loading-spinner show-spinner="advertiserCtrl.showSpinner"></loading-spinner>
+
+  <h1 class="view-title">{{advertiserCtrl.title}}</h1>
+  <hr/>
+
+  <form name="newEditAdvertiserForm">
+
+    <!--Advertiser ID-->
+    <div ng-if=":: advertiserCtrl.advertiser.id">
+      <label for="advertiser_name" class="normal-label advertiser-form-label">ID</label>
+      <label ng-bind=":: advertiserCtrl.advertiser.id"></label>
+    </div>
+
+    <!--Advertiser Name-->
+    <div class="advertiser-row">
+      <label for="advertiser_name" class="mandatory-label advertiser-form-label">Name</label>
+      <input
+        type="text"
+        name="nameInput"
+        tooltip-trigger="mouseenter" tooltip-placement="right" uib-tooltip="{{advertiserCtrl.advertiser.name}}"
+        required
+        ng-minlength="3"
+        class="advertiser-input-width"
+        id="advertiser_name"
+        ng-model="advertiserCtrl.advertiser.name"
+        placeholder="Enter advertiser name"/>
+      <span class="validationError" ng-show="newEditAdvertiserForm.nameInput.$error.required">Required!</span>
+      <span class="validationError" ng-show="newEditAdvertiserForm.nameInput.$error.minlength">Advertiser Name must be at least 3 characters.</span>
+    </div>
+
+    <!--Advertiser Description-->
+    <div class="advertiser-row">
+      <label class="mandatory-label advertiser-form-label description-label">Description</label>
+
+      <!--Markdown Editor-->
+      <!--Hidden Input Use for Validation-->
+      <input
+        id="description-markdown-editor-hidden-input"
+        type="text"
+        name="descriptionMarkdownEditorHiddenInput"
+        required
+        ng-model="advertiserCtrl.advertiser.description"/>
+      <div ui-ace="advertiserCtrl.descriptionEditorOptions" ng-model="advertiserCtrl.advertiser.description"></div>
+      <span class="validationError" ng-show="newEditAdvertiserForm.descriptionMarkdownEditorHiddenInput.$error.required">Required!</span>
+
+      <!--Parsed Markdown-->
+      <div ng-show="advertiserCtrl.advertiser.description.length > 0" class="parsed-markdown" btf-markdown="advertiserCtrl.advertiser.description"></div>
+    </div>
+
+
+    <!--Advertiser Link-->
+    <div class="advertiser-row">
+      <label for="advertiser_link" class="normal-label advertiser-form-label">Link</label>
+      <input
+        type="url"
+        name="linkInput"
+        tooltip-trigger="mouseenter" tooltip-placement="right" uib-tooltip="{{advertiserCtrl.advertiser.link}}"
+        class="advertiser-input-width"
+        id="advertiser_link"
+        ng-model="advertiserCtrl.advertiser.link"
+        placeholder="Enter advertiser link"/>
+      <span class="validationError" ng-show="newEditAdvertiserForm.linkInput.$error.url">Not valid link!</span>
+    </div>
+
+    <!--Advertiser Created at-->
+    <div class="advertiser-row" ng-if=":: advertiserCtrl.advertiser.id">
+      <label for="advertiser_name" class="normal-label advertiser-form-label">Created at</label>
+      <label ng-bind=":: advertiserCtrl.advertiser.uiCreatedAt"></label>
+    </div>
+
+    <!--Advertiser Updated at-->
+    <div class="advertiser-row" ng-if=":: advertiserCtrl.advertiser.id">
+      <label for="advertiser_name" class="normal-label advertiser-form-label">Updated at</label>
+      <label ng-bind=":: advertiserCtrl.advertiser.uiUpdatedAt"></label>
+    </div>
+
+  </form>
+
+  <!--Footer Button Strip-->
+  <footer class="button-strip">
+    <button
+      type="button"
+      tooltip-is-open="newEditAdvertiserForm.$invalid" tooltip-placement="left"
+      uib-tooltip="Please fix the errors above."
+      ng-disabled="newEditAdvertiserForm.$invalid"
+      class="btn btn-primary save-button"
+      ng-click="advertiserCtrl.onSaveClick()">
+      Save
+    </button>
+  </footer>
+
+</div>
+
+

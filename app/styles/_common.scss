@@ -1,0 +1,50 @@
+/**
+* Color Palette
+**/
+
+$main-color: #246fdc;
+$secondary-color: #003471;
+$third-color: #faf000;
+$white-color: #ffffff;
+$dark-gray-color: #6b7587;
+$error-color: #d13d3b;
+$red-color: #FF0000;
+$orange-color: #ff7369;
+$green-color: #44c3b5;
+$transparent-color: rgba(255, 255, 255, 0);
+
+/**
+* Mixin
+**/
+
+@mixin text-truncate($width: 100) {
+  width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin custom-tooltip($background-color: $orange-color, $border-top-color: $transparent-color, $border-right-color: $transparent-color, $border-bottom-color: $transparent-color, $border-left-color: $transparent-color) {
+  + .tooltip > .tooltip-inner {
+    background-color: $background-color;
+  }
+
+  + .tooltip > .tooltip-arrow {
+    border-color: $border-top-color $border-right-color $border-bottom-color $border-left-color;
+  }
+}
+
+/**
+* Classes
+**/
+
+.view-title {
+  color: $green-color;
+}
+
+@media screen and (max-width: 960px) {
+  .view-title {
+    display: none;
+  }
+}
+
